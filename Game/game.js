@@ -53,6 +53,14 @@ function create() {
         .setOrigin(0, 0)
         .setScale(0.15)
 
+    this.add.image(200, 35, 'cloud1') // image(x, y, id-asset)
+        .setOrigin(0, 0)
+        .setScale(0.15)
+
+    this.add.image(40, 20, 'cloud1') // image(x, y, id-asset)
+        .setOrigin(0, 0)
+        .setScale(0.15)
+
     this.floor = this.physics.add.staticGroup()
 
     this.floor
@@ -61,7 +69,17 @@ function create() {
         .refreshBody()
 
     this.floor
-        .create(220, config.height - 16, 'floorbricks')
+        .create(260, config.height - 16, 'floorbricks')
+        .setOrigin(0, 0.5)
+        .refreshBody()
+
+    this.floor
+        .create(388, config.height - 16, 'floorbricks')
+        .setOrigin(0, 0.5)
+        .refreshBody()
+
+    this.floor
+        .create(500, config.height - 16, 'floorbricks')
         .setOrigin(0, 0.5)
         .refreshBody()
 
