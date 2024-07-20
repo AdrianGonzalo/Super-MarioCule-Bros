@@ -61,7 +61,7 @@ function create() {
         .refreshBody()
 
     this.floor
-        .create(150, config.height - 16, 'floorbricks')
+        .create(220, config.height - 16, 'floorbricks')
         .setOrigin(0, 0.5)
         .refreshBody()
 
@@ -89,20 +89,29 @@ function update() {
     if (this.keys.left.isDown) {
         this.mario.x -= 1
         this.mario.flipX = true
-        this.mario.anims.play('mario-walk', true)
+
+        if (this.mario.body.touching.down) {
+            this.mario.anims.play('mario-walk', true)
+        }
 
     } else if (this.keys.right.isDown) {
         this.mario.x += 1
-        this.mario.anims.play('mario-walk', true)
         this.mario.flipX = false
 
+        if (this.mario.body.touching.down) {
+            this.mario.anims.play('mario-walk', true)
+        }
+
     } else {
-        this.mario.anims.play('mario-idle', true)
+        if (this.mario.body.touching.down) {
+            this.mario.anims.play('mario-idle', true)
+        }
     }
 
     if (this.keys.up.isDown && this.mario.body.touching.down) {
         this.mario.setVelocityY(-300)
         this.mario.anims.play('mario-jump', true)
+        console.log('Mario jump animation played')
     }
 
     if (this.mario.y >= config.height) {
